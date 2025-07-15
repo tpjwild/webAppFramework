@@ -71,7 +71,8 @@ export default function Home() {
         onClick={async () => {
           try {
             const { loadUserData } = await import("../userData");
-            const data = await loadUserData(userId!);
+            type UserData = { comboValue: string };
+            const data = await loadUserData<UserData>(userId!);
             if (data && data.comboValue) {
               setComboValue(data.comboValue);
               setMessageBox("Loaded!");
