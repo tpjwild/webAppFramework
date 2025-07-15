@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { signInWithEmail, signUpWithEmail, signOut, getUser } from "../auth";
+import { signInWithEmail, signUpWithEmail } from "../auth";
 
 export default function AuthForm() {
   const [email, setEmail] = useState("");

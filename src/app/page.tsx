@@ -8,12 +8,11 @@ export default function Home() {
   const [userId, setUserId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [comboValue, setComboValue] = useState("1");
-  const [saveMessage, setSaveMessage] = useState("");
   const [messageBox, setMessageBox] = useState<string | null>(null);
 
   // Listen for auth state changes and update userId
   useEffect(() => {
-    const { data: listener } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user) {
         setUserId(session.user.id);
       } else {
@@ -57,7 +56,6 @@ export default function Home() {
       <button
         className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700"
         onClick={async () => {
-          setSaveMessage("");
           try {
             await import("../userData").then(({ saveUserData }) => saveUserData(userId!, { comboValue }));
             setMessageBox("Saved!");
