@@ -8,7 +8,7 @@ export async function saveUserData<T extends object>(user_id: string, data: T) {
 }
 
 // Load user data by user_id
-export async function loadUserData<T = any>(user_id: string): Promise<T | null> {
+export async function loadUserData<T = unknown>(user_id: string): Promise<T | null> {
   const { data, error } = await supabase
     .from('user_data')
     .select('data')

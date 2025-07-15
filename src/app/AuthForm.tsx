@@ -21,8 +21,12 @@ export default function AuthForm() {
         if (error) throw error;
         setMessage("Registered! Please check your email.");
       }
-    } catch (err: any) {
-      setMessage(err.message || "Error");
+    } catch (err: unknown) {
+      if (err && typeof err === 'object' && 'message' in err && typeof (err as any).message === 'string') {
+        setMessage((err as any).message);
+      } else {
+        setMessage('Error');
+      }
     }
   }
 
